@@ -1,4 +1,8 @@
-﻿namespace Product.Api.Services.Product
+﻿using Product.Api.Models.General;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace Product.Api.Services.Product
 {
     public interface IProductService
     {
