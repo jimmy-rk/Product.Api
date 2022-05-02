@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Product.Api.Configuration;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace Product.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product.Api", Version = "v1" });
             });
+            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
             services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
         }
