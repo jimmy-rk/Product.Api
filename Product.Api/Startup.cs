@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Product.Api.Configuration;
+using Product.Api.Services.Product;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ namespace Product.Api
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
             services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+            services.AddTransient<IProductService, DapperProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
