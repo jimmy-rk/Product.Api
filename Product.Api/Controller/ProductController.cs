@@ -82,5 +82,27 @@ namespace Product.Api.Controller
 
 
         #endregion
+
+        #region PUT
+
+        [HttpPut("/product/update")]
+        public async Task<IActionResult> Update(ProductViewModel product)
+        {
+            try
+            {
+                var serviceResponse = await _productService.Update(product);
+                _logger.LogServiceResponse("Update Product", serviceResponse.Success, serviceResponse);
+                return serviceResponse.ConvertToObjectResult();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException("Update Product", ex);
+                return new ServiceResponse(false, "Unexpected_error", StatusCodes.Status500InternalServerError).ConvertToObjectResult();
+
+            }
+        }
+
+
+        #endregion
     }
 }

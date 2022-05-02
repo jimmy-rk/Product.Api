@@ -84,5 +84,30 @@ namespace Product.Api.Services.Product
                 return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.UnexpectedError, StatusCodes.Status500InternalServerError);
             }
         }
+
+        public async Task<ServiceResponse<ProductViewModel>> Update(ProductViewModel product)
+        {
+            try
+            {
+                if (product.Guid.IsNullOrEmptyOrInvalidGuid())
+                    return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.InvalidGuid, StatusCodes.Status400BadRequest);
+
+                var updateCmd = _mapper.Map<Cqrs.Product.Update.Command>(product);
+                var result = await _mediator.Send(updateCmd);
+
+                if (result.UpdateCount == 0)
+                    return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.ProductDoesNotExist, StatusCodes.Status400BadRequest);
+
+                return new ServiceResponse<ProductViewModel>(true, product, ServiceResponseMessages.ProductUpdated, StatusCodes.Status200OK);
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException("Update", ex);
+                return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.UnexpectedError, StatusCodes.Status500InternalServerError);
+
+            }
+        }
     }
 }
