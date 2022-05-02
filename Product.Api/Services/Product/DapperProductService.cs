@@ -109,5 +109,22 @@ namespace Product.Api.Services.Product
 
             }
         }
+
+        public async Task<ServiceResponse<IEnumerable<ProductViewModel>>> GetProducts()
+        {
+            try
+            {
+                var mediatorRes = await _mediator.Send(new Cqrs.Product.GetProducts.Query());
+                var mapperRes = _mapper.Map<IEnumerable<ProductViewModel>>(mediatorRes);
+                return new ServiceResponse<IEnumerable<ProductViewModel>>(true, mapperRes, StatusCodes.Status200OK);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException("Get Products", ex);
+                return new ServiceResponse<IEnumerable<ProductViewModel>>(false, "Unexpected_error", StatusCodes.Status500InternalServerError);
+
+            }
+        }
     }
 }

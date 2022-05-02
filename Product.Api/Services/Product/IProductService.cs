@@ -11,5 +11,6 @@ namespace Product.Api.Services.Product
         public Task<ServiceResponse<ProductViewModel>> GetProduct(string guid);
         public Task<ServiceResponse<ProductViewModel>> Create(ProductViewModel product);
         public Task<ServiceResponse<ProductViewModel>> Update(ProductViewModel product);
+        public Task<ServiceResponse<IEnumerable<ProductViewModel>>> GetProducts();
     }
 }
