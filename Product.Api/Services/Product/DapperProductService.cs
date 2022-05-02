@@ -2,8 +2,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Product.Api.Constants;
 using Product.Api.Extensions;
 using Product.Api.Models.General;
+using Product.Api.Models.Product;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -38,6 +40,27 @@ namespace Product.Api.Services.Product
                 _logger.LogException("Get Product Group Types", ex);
                 return new ServiceResponse<IEnumerable<SelectListItem>>(false, "Unexpected_error", StatusCodes.Status500InternalServerError);
 
+            }
+        }
+
+        public async Task<ServiceResponse<ProductViewModel>> GetProduct(string guid)
+        {
+            try
+            {
+                if (!Guid.TryParse(guid, out Guid productGuid))
+                    return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.InvalidGuid, StatusCodes.Status400BadRequest);
+                var result = await _mediator.Send(new Cqrs.Product.GetByGuid.Query { Guid = productGuid });
+                if (result == null)
+                {
+                    return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.ProductDoesNotExist, StatusCodes.Status404NotFound);
+                }
+                var product = _mapper.Map<ProductViewModel>(result);
+                return new ServiceResponse<ProductViewModel>(true, product, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException("Get Product", ex);
+                return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.UnexpectedError, StatusCodes.Status500InternalServerError);
             }
         }
     }

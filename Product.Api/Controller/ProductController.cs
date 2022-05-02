@@ -41,6 +41,23 @@ namespace Product.Api.Controller
             }
         }
 
+        [HttpGet("/product/{guid}")]
+        public async Task<IActionResult> GetProduct(string guid)
+        {
+            try
+            {
+                var serviceResponse = await _productService.GetProduct(guid);
+                _logger.LogServiceResponse("Get Product", serviceResponse.Success, serviceResponse);
+                return serviceResponse.ConvertToObjectResult();
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException("Get Product", ex);
+                return new ServiceResponse(false, "Unexpected_error", StatusCodes.Status500InternalServerError).ConvertToObjectResult();
+            }
+        }
+
         #endregion
     }
 }
