@@ -62,4 +62,7 @@
     <Build Include="Tables\ProductGroup.sql" />
     <Build Include="Tables\Product.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Product.Database.local.publish.publish.xml" />
+  </ItemGroup>
 </Project>
