@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Product.Api.Extensions;
 using Product.Api.Models.General;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
