@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Api", "Product.Api\Product.Api.csproj", "{8AA5FEF8-A286-4CBE-95EA-1B4B3A25C710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Product.Api", "Product.Api\Product.Api.csproj", "{8AA5FEF8-A286-4CBE-95EA-1B4B3A25C710}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Product.Database", "Product.Database\Product.Database.sqlproj", "{E48354A5-6DDF-4C3F-B415-DD2F296819A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Product.Test", "Product.Test\Product.Test.csproj", "{8F21805D-5F04-407E-A60F-99C9C1F21125}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{E48354A5-6DDF-4C3F-B415-DD2F296819A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E48354A5-6DDF-4C3F-B415-DD2F296819A4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E48354A5-6DDF-4C3F-B415-DD2F296819A4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8F21805D-5F04-407E-A60F-99C9C1F21125}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F21805D-5F04-407E-A60F-99C9C1F21125}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F21805D-5F04-407E-A60F-99C9C1F21125}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F21805D-5F04-407E-A60F-99C9C1F21125}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
