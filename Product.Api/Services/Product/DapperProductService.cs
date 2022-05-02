@@ -63,5 +63,26 @@ namespace Product.Api.Services.Product
                 return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.UnexpectedError, StatusCodes.Status500InternalServerError);
             }
         }
+
+        public async Task<ServiceResponse<ProductViewModel>> Create(ProductViewModel product)
+        {
+            try
+            {
+                var createCmd = _mapper.Map<Cqrs.Product.Create.Command>(product);
+                var result = await _mediator.Send(createCmd);
+                product.Guid = result.Guid.ToString();
+
+                if (result == null || result.Id.Equals(0) || result.Guid == Guid.Empty)
+                    return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.ProductSaveError, StatusCodes.Status500InternalServerError);
+
+                return new ServiceResponse<ProductViewModel>(true, product, ServiceResponseMessages.ProductCreated, StatusCodes.Status200OK);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException("Create", ex);
+                return new ServiceResponse<ProductViewModel>(false, ServiceResponseMessages.UnexpectedError, StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Product.Api.Extensions;
 using Product.Api.Models.General;
+using Product.Api.Models.Product;
 using Product.Api.Services.Product;
 using System;
 using System.Threading.Tasks;
@@ -57,6 +58,28 @@ namespace Product.Api.Controller
                 return new ServiceResponse(false, "Unexpected_error", StatusCodes.Status500InternalServerError).ConvertToObjectResult();
             }
         }
+
+        #endregion
+
+        #region Post
+
+        [HttpPost("/product/create")]
+        public async Task<IActionResult> Create(ProductViewModel product)
+        {
+            try
+            {
+                var serviceResponse = await _productService.Create(product);
+                _logger.LogServiceResponse("Create Product", serviceResponse.Success, serviceResponse);
+                return serviceResponse.ConvertToObjectResult();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogException("Create Product", ex);
+                return new ServiceResponse(false, "Unexpected_error", StatusCodes.Status500InternalServerError).ConvertToObjectResult();
+            }
+
+        }
+
 
         #endregion
     }

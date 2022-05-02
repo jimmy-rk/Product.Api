@@ -9,5 +9,6 @@ namespace Product.Api.Services.Product
     {
         public Task<ServiceResponse<IEnumerable<SelectListItem>>> GetProductGroupTypes();
         public Task<ServiceResponse<ProductViewModel>> GetProduct(string guid);
+        public Task<ServiceResponse<ProductViewModel>> Create(ProductViewModel product);
     }
 }

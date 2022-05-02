@@ -5,5 +5,7 @@
         public const string InvalidGuid = "The guid supplied was invalid";
         public const string ProductDoesNotExist = "The requested product does not exist";
         public const string UnexpectedError = "There was an unexpedted error.";
+        public const string ProductSaveError = "The product save operation has failed";
+        public const string ProductCreated = "Product successfully created";
     }
 }
