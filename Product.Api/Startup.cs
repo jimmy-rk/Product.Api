@@ -48,7 +48,12 @@ namespace Product.Api
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
             services.AddAutoMapper(typeof(Startup));
             services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
-            services.AddTransient<IProductService, DapperProductService>();
+
+            //DAPPER is used for Products CRUD operations
+            //services.AddTransient<IProductService, DapperProductService>();
+
+            //EF Core is used for Products CRUD operations 
+            services.AddTransient<IProductService, EfProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
