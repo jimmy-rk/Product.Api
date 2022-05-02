@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[ProductGroup]
+(
+	[Nk] NVARCHAR(10) NOT NULL,
+	[Text] NVARCHAR(250) NOT NULL,
+
+	CONSTRAINT [PK_ProductGroup] PRIMARY KEY CLUSTERED ([Nk] ASC),
+)
