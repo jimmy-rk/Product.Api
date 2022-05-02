@@ -39,6 +39,36 @@ namespace Product.Api.Services.MappingProfiles
             .ForPath(dest => dest.ProductGroupNk, opt => opt.MapFrom(src => src.ProductGroupNk))
             .ForPath(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments))
             .ForPath(dest => dest.Price, opt => opt.MapFrom(src => src.Price));
+
+            CreateMap<ProductViewModel, Api.Models.EF.Product>(MemberList.None)
+            .ForPath(dest => dest.Guid, opt => opt.MapFrom(src => src.Guid))
+            .ForPath(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForPath(dest => dest.ProductGroupNk, opt => opt.MapFrom(src => src.ProductGroupNk))
+            .ForPath(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments))
+            .ForPath(dest => dest.Price, opt => opt.MapFrom(src => src.Price));
+
+            CreateMap<Api.Models.EF.Product, ProductViewModel>(MemberList.None)
+            .ForPath(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForPath(dest => dest.ProductGroupNk, opt => opt.MapFrom(src => src.ProductGroupNk))
+            .ForPath(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments))
+            .ForPath(dest => dest.Price, opt => opt.MapFrom(src => src.Price));
+
+            CreateMap<Api.Models.EF.Product, ProductViewModel>(MemberList.None)
+            .ForPath(dest => dest.Guid, opt => opt.MapFrom(src => src.Guid))
+            .ForPath(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForPath(dest => dest.ProductGroupNk, opt => opt.MapFrom(src => src.ProductGroupNk))
+            .ForPath(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+            .ForPath(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments));
+
+            CreateMap<Api.Models.EF.ProductGroup, SelectListItem>(MemberList.None)
+            .ForPath(dest => dest.Value, opt => opt.MapFrom(src => src.Nk))
+            .ForPath(dest => dest.Text, opt => opt.MapFrom(src => src.Text));
+
+            CreateMap<Api.Models.EF.Product, ProductViewModel>(MemberList.None)
+            .ForPath(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+            .ForPath(dest => dest.ProductGroupNk, opt => opt.MapFrom(src => src.ProductGroupNk))
+            .ForPath(dest => dest.Comments, opt => opt.MapFrom(src => src.Comments))
+            .ForPath(dest => dest.Price, opt => opt.MapFrom(src => src.Price));
         }
     }
 }
