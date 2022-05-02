@@ -19,6 +19,7 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Cqrs\Product\" />
+    <Folder Include="Models\General\" />
   </ItemGroup>
 
 </Project>
