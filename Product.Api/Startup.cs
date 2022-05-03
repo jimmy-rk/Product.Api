@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Product.Api.Configuration;
+using Product.Api.Middleware;
 using Product.Api.Models.EF;
 using Product.Api.Services.Product;
 using Serilog;
@@ -61,7 +62,7 @@ namespace Product.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory  loggerFactory)
         {
             app.UseCors("ApiCorsPolicy");
             if (env.IsDevelopment())
@@ -76,6 +77,10 @@ namespace Product.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<SerilogEnricher>();
+            loggerFactory.AddSerilog();
+
 
             app.UseEndpoints(endpoints =>
             {
